@@ -1,6 +1,8 @@
 import os
+import serial
 #declaracion de variables
-opcion,Led1,Led2,Led3,Led4,all="0","off","off","off","off","on"
+opcion,Led1,Led2,Led3,Led4,all="0","apagado","apagado","apagado","apagado","encendido"
+arduino = serial.Serial("COM5",9600) #9600 caracteres por segundo
 while opcion !="6":
     os.system("cls")
     print("\n\n\tSistema para el control de iluminación casero")
@@ -14,36 +16,51 @@ while opcion !="6":
     print("\t6. Salir\n")
     opcion=input("\t Ingrese la opción deseada:  ")
 
+    # table={"1":"a", "2":"b" }
+    # #arduino.write(btable[opcion].lowerCase)
+    # table[opcion].lower()
+
     if opcion == "1":
-        if Led1 == "off":
-            Led1 = "on"
+        if Led1 == "apagado":
+            Led1 = "encendido"
+            arduino.write(b'a')
         else:
-            Led1 = "off"
+            Led1 = "apagado"
+            arduino.write(b'A')
     elif opcion == "2":
-        if Led2 == "off":
-            Led2 = "on"
+        if Led2 == "apagado":
+            Led2 = "encendido"
+            arduino.write(b'b')
         else:
-            Led2 = "off"
+            Led2 = "apagado"
+            arduino.write(b'B')
     elif opcion == "3":
-        if Led3 == "off":
-            Led3 = "on"
+        if Led3 == "apagado":
+            Led3 = "encendido"
+            arduino.write(b'c')
         else:
-            Led3 = "off"
+            Led3 = "apagado"
+            arduino.write(b'C')
     elif opcion == "4":
-        if Led4 == "off":
-            Led4 = "on"
+        if Led4 == "apagado":
+            Led4 = "encendido"
+            arduino.write(b'd')
         else:
-            Led4 = "off"
+            Led4 = "apagado"
+            arduino.write(b'D')
     elif opcion == "5":
-        if all == "off":
-            all,Led4,Led3,Led2,Led1 = "on","off","off","off","off"
+        if all == "apagado":
+            all,Led4,Led3,Led2,Led1 = "encendido","apagado","apagado","apagado","apagado"
+
+            arduino.write(b'E')
         else:
-            all,Led4,Led3,Led2,Led1 = "off","on","on","on","on"
+            all,Led4,Led3,Led2,Led1 = "apagado","encendido","encendido","encendido","encendido"
+            arduino.write(b'e')
     elif opcion == "6":
         print("\n\tGracias por utilizar el sistema")
     else:
         print("\n\tLa opcion seleccionada no esta disponible\n")
-    
+arduino.close()
    
 
 
