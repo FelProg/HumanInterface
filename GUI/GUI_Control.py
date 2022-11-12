@@ -12,7 +12,7 @@ fontSize= 20;
 fontFamily='Arial'
 windowSize = "800x600"
 
-windowColor = '#fafafa' #white
+windowColor = '#f0f0f0' #white
 border_color = Frame(ventana, background="orange")
 
 #variables de proporcion para la imagen casa.
@@ -59,7 +59,7 @@ Casa.place(x=400+((400-imgWidth)//2), y=((600-imgHeight)//2))
 #configuración de frame lateral izquierdo
 LSide_Frame = Frame() #creacion del frame
 LSide_Frame.pack() #empaquetamiento de Frame
-LSide_Frame.config(width="400",height="600",bg="#000a00",bd= 2,relief="flat") 
+LSide_Frame.config(width="400",height="600",bg="#f0f0f0",bd= 2,relief="flat") 
 LSide_Frame.place(relx=0, rely=0)
 
 #configuracion del frame que contiene los labels
