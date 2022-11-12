@@ -21,13 +21,13 @@ etiqueta_Titulo = Label(ventana_Principal, text="")
 boton_Led1 = Button(text="apagar LED 1",command=lambda: ConmutarLED(boton_Led1,"1"))
 boton_Led1.place(x=16, y=60)
 
-boton_Led2 = Button(text="apagar LED 2",command=lambda: ConmutarLED(boton_Led1,"1"))
+boton_Led2 = Button(text="apagar LED 2",command=lambda: ConmutarLED(boton_Led2,"2"))
 boton_Led2.place(x=16, y=92)
 
-boton_Led3 = Button(text="apagar LED 3",command=lambda: ConmutarLED(boton_Led1,"1"))
+boton_Led3 = Button(text="apagar LED 3",command=lambda: ConmutarLED(boton_Led3,"3"))
 boton_Led3.place(x=16, y=124)
 
-boton_Led4 = Button(text="apagar LED 4",command=lambda: ConmutarLED(boton_Led1,"1"))
+boton_Led4 = Button(text="apagar LED 4",command=lambda: ConmutarLED(boton_Led4,"4"))
 boton_Led4.place(x=16, y=156)
 
 boton_ConmutarTodos = Button(text="conmutar todos")
