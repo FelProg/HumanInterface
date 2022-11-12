@@ -6,18 +6,28 @@ from PIL import Image,ImageTk
 
 ventana_Principal = Tk()
 
+#declarar funcion
+def ConmutarLED(boton, numeroLED) : 
+    # print("Presionaron un boton")
+    # messagebox.showinfo("Informacion","Boton encendido")
+    if boton["text"] == "Apagar LED "+ numeroLED :
+        boton["text"] = "Encender LED "+ numeroLED
+    else:
+        boton["text"] = "Apagar LED "+ numeroLED
+        
+
 etiqueta_Titulo = Label(ventana_Principal, text="")
 
-boton_Led1 = Button(text="apagar LED 1")
+boton_Led1 = Button(text="apagar LED 1",command=lambda: ConmutarLED(boton_Led1,"1"))
 boton_Led1.place(x=16, y=60)
 
-boton_Led2 = Button(text="apagar LED 2")
+boton_Led2 = Button(text="apagar LED 2",command=lambda: ConmutarLED(boton_Led1,"1"))
 boton_Led2.place(x=16, y=92)
 
-boton_Led3 = Button(text="apagar LED 3")
+boton_Led3 = Button(text="apagar LED 3",command=lambda: ConmutarLED(boton_Led1,"1"))
 boton_Led3.place(x=16, y=124)
 
-boton_Led4 = Button(text="apagar LED 4")
+boton_Led4 = Button(text="apagar LED 4",command=lambda: ConmutarLED(boton_Led1,"1"))
 boton_Led4.place(x=16, y=156)
 
 boton_ConmutarTodos = Button(text="conmutar todos")
