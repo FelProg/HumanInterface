@@ -59,7 +59,7 @@ Casa.place(x=400+((400-imgWidth)//2), y=((600-imgHeight)//2))
 #configuración de frame lateral izquierdo
 LSide_Frame = Frame() #creacion del frame
 LSide_Frame.pack() #empaquetamiento de Frame
-LSide_Frame.config(width="400",height="600",bg="#f0f0f0",bd= 2,relief="flat") 
+LSide_Frame.config(width="400",height="600",bg="#94856a",bd= 2,relief="flat") 
 LSide_Frame.place(relx=0, rely=0)
 
 #configuracion del frame que contiene los labels
@@ -97,10 +97,14 @@ def borrarOmostrar(Ubi,UbiX,UbiY, iluminar = 0):
         Ubi.place(x=UbiX, y=UbiY)
 
 #el boton llama a borrarOmostrar con los parametros(imagen que mostrará, posicion donde se mostrará)
-BotonSala = Button(Control_Frame,    text="Cocina", bg='#ffed00',fg="#000600", font=(fontFamily, fontSize-7), width="10",height="3",command=lambda: borrarOmostrar(FocoCocina, 400+130, 150))
-BotonComedor = Button(Control_Frame, text="Comedor", bg='#ffed00',fg="#000600",font=(fontFamily, fontSize-7),width="10",height="3",command=lambda: borrarOmostrar(FocoComedor, 400+130, 230))
-BotonCocina = Button(Control_Frame, text="Sala", bg='#ffed00',fg="#000600",font=(fontFamily, fontSize-7),width="10",height="3",command=lambda: borrarOmostrar(FocoSala, 400+250, 350))
-BotonCochera = Button(Control_Frame, text="Cochera", bg='#ffed00',fg="#000600",font=(fontFamily, fontSize-7),width="10",height="3",command=lambda: borrarOmostrar(FocoCochera, 400+250, 450))
+BotonSala = Button(Control_Frame,    text="Cocina", bg='#ffed00',fg="#000600", font=(fontFamily, fontSize-7), width="10",height="3"
+,command=lambda: borrarOmostrar(FocoCocina, 400+130, 150))
+BotonComedor = Button(Control_Frame, text="Comedor", bg='#ffed00',fg="#000600",font=(fontFamily, fontSize-7),width="10",height="3"
+,command=lambda: borrarOmostrar(FocoComedor, 400+130, 230))
+BotonCocina = Button(Control_Frame, text="Sala", bg='#ffed00',fg="#000600",font=(fontFamily, fontSize-7),width="10",height="3"
+,command=lambda: borrarOmostrar(FocoSala, 400+250, 350))
+BotonCochera = Button(Control_Frame, text="Cochera", bg='#ffed00',fg="#000600",font=(fontFamily, fontSize-7),width="10",height="3"
+,command=lambda: borrarOmostrar(FocoCochera, 400+250, 450))
 BotonDesactivar = Button(Control_Frame, text="Desactivar", bg='#ffed00',fg="#000600",font=(fontFamily, fontSize-7),width="22",height="3"
         ,command=lambda: 
         {
@@ -125,16 +129,6 @@ BotonCocina.place(anchor='w', relx=0.51, rely=0.2)
 BotonCochera.place(anchor='w', relx=0.51, rely=0.4)
 BotonDesactivar.place(anchor="w", relx=0.15, rely=0.6)
 BotonEncender.place(anchor="w", relx=0.15, rely=0.8)
-
-
-
-
-
-
-# messagebox.showinfo("Ventana de prueba","El ancho de la ventana es "+ str(heights))
-
-
-
 
 ventana.mainloop()
 #mainloop siempre al final

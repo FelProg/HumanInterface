@@ -14,7 +14,12 @@ def ConmutarLED(boton, numeroLED) :
         boton["text"] = "Encender LED "+ numeroLED
     else:
         boton["text"] = "Apagar LED "+ numeroLED
-        
+
+def Salir() :
+    ventana_Principal.destroy()
+
+# def ApagarTodos() :
+
 
 etiqueta_Titulo = Label(ventana_Principal, text="")
 
@@ -34,7 +39,7 @@ boton_ConmutarTodos = Button(text="conmutar todos")
 boton_ConmutarTodos.place(x=16, y=188)
 
 
-boton_Salir = Button(text="salir")
+boton_Salir = Button(text="salir", command=Salir)
 boton_Salir.place(x=16, y=220)
 
 

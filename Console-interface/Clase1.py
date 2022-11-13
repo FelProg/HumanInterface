@@ -2,7 +2,7 @@ import os
 import serial
 #declaracion de variables
 opcion,Led1,Led2,Led3,Led4,all="0","apagado","apagado","apagado","apagado","encendido"
-arduino = serial.Serial("COM5",9600) #9600 caracteres por segundo
+arduino = serial.Serial("COM4",9600) #9600 caracteres por segundo
 while opcion !="6":
     os.system("cls")
     print("\n\n\tSistema para el control de iluminación casero")
@@ -15,10 +15,6 @@ while opcion !="6":
     print("\t5. Todos "+all)
     print("\t6. Salir\n")
     opcion=input("\t Ingrese la opción deseada:  ")
-
-    # table={"1":"a", "2":"b" }
-    # #arduino.write(btable[opcion].lowerCase)
-    # table[opcion].lower()
 
     if opcion == "1":
         if Led1 == "apagado":
