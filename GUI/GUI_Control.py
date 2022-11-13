@@ -3,6 +3,10 @@ from tkinter import *
 from tkinter import messagebox, Button
 from tkinter.font import BOLD,Font
 from PIL import Image,ImageTk
+import serial
+
+#instancia del puerto serial
+arduino = serial.Serial("COM4",9600) #9600 caracteres por segundo
 
 #instancia de Tk
 ventana = Tk()
@@ -33,18 +37,22 @@ casa = ImageTk.PhotoImage(image1) #convierte imagen a un objeto ImageTk
 image2 = Image.open("lightBulb.jpg")   
 image2 = image2.resize((30,30), Image.Resampling.LANCZOS) 
 focoSala = ImageTk.PhotoImage(image2) 
+led1 = 'a'
 
 image3 = Image.open("lightBulb.jpg")   
 image3 = image3.resize((30,30), Image.Resampling.LANCZOS) 
 comedor = ImageTk.PhotoImage(image3) 
+led2 = 'b'
 
 image4 = Image.open("lightBulb.jpg")   
 image4 = image4.resize((30,30), Image.Resampling.LANCZOS) 
 cocina = ImageTk.PhotoImage(image4) 
+led3 = 'c'
 
 image5 = Image.open("lightBulb.jpg")   
 image5 = image5.resize((30,30), Image.Resampling.LANCZOS) 
 cochera = ImageTk.PhotoImage(image5) 
+led4 = 'd'
 
 #variables de imagenes
 Casa = Label(ventana, image=casa)
@@ -86,40 +94,46 @@ label.place(anchor='w', relx=0.15, rely=0.80)
 
 
 #funcion para ocultar o mostrar imagen al presionar un boton
-def borrarOmostrar(Ubi,UbiX,UbiY, iluminar = 0):
+def borrarOmostrar(Ubi,UbiX,UbiY,Led, iluminar = None):
     if iluminar == 1:
         Ubi.place(x=UbiX,y=UbiY)
+        arduino.write(bytes(Led.lower(), 'utf-8'))
     elif iluminar == 2:
         Ubi.place_forget()
+        arduino.write(bytes(Led.upper(), 'utf-8'))
     elif Ubi.place_info() != {}:
         Ubi.place_forget()
+        # convierte el string enviado a Led a tipo byte mayuscula para apagarlo
+        arduino.write(bytes(Led.upper(), 'utf-8'))
     else:
         Ubi.place(x=UbiX, y=UbiY)
+       # convierte el string enviado a Led a tipo byte minuscula para encenderlo
+        arduino.write(bytes(Led.lower(), 'utf-8'))
 
 #el boton llama a borrarOmostrar con los parametros(imagen que mostrará, posicion donde se mostrará)
 BotonSala = Button(Control_Frame,    text="Cocina", bg='#ffed00',fg="#000600", font=(fontFamily, fontSize-7), width="10",height="3"
-,command=lambda: borrarOmostrar(FocoCocina, 400+130, 150))
+,command=lambda: borrarOmostrar(FocoCocina, 400+130, 150, led1))
 BotonComedor = Button(Control_Frame, text="Comedor", bg='#ffed00',fg="#000600",font=(fontFamily, fontSize-7),width="10",height="3"
-,command=lambda: borrarOmostrar(FocoComedor, 400+130, 230))
+,command=lambda: borrarOmostrar(FocoComedor, 400+130, 230,led2))
 BotonCocina = Button(Control_Frame, text="Sala", bg='#ffed00',fg="#000600",font=(fontFamily, fontSize-7),width="10",height="3"
-,command=lambda: borrarOmostrar(FocoSala, 400+250, 350))
+,command=lambda: borrarOmostrar(FocoSala, 400+250, 350,led3))
 BotonCochera = Button(Control_Frame, text="Cochera", bg='#ffed00',fg="#000600",font=(fontFamily, fontSize-7),width="10",height="3"
-,command=lambda: borrarOmostrar(FocoCochera, 400+250, 450))
+,command=lambda: borrarOmostrar(FocoCochera, 400+250, 450,led4))
 BotonDesactivar = Button(Control_Frame, text="Desactivar", bg='#ffed00',fg="#000600",font=(fontFamily, fontSize-7),width="22",height="3"
         ,command=lambda: 
         {
-            borrarOmostrar(FocoCochera, "", "", 2), 
-            borrarOmostrar(FocoSala, ""+"", "", 2),
-            borrarOmostrar(FocoComedor, ""+"", "", 2),
-            borrarOmostrar(FocoCocina, ""+"", "", 2)
+            borrarOmostrar(FocoCochera, "", "",led4, 2), 
+            borrarOmostrar(FocoSala, ""+"", "",led1, 2),
+            borrarOmostrar(FocoComedor, ""+"", "",led2, 2),
+            borrarOmostrar(FocoCocina, ""+"", "",led3, 2)
         })
 BotonEncender = Button(Control_Frame, text="Activar", bg='#ffed00',fg="#000600",font=(fontFamily, fontSize-7),width="22",height="3"
         ,command=lambda: 
         {
-            borrarOmostrar(FocoCochera, 400+250, 450, 1), 
-            borrarOmostrar(FocoSala, 400+250, 350, 1),
-            borrarOmostrar(FocoComedor, 400+130, 230, 1),
-            borrarOmostrar(FocoCocina, 400+130, 150, 1)
+            borrarOmostrar(FocoCochera, 400+250, 450,led4, 1), 
+            borrarOmostrar(FocoSala, 400+250, 350,led1, 1),
+            borrarOmostrar(FocoComedor, 400+130, 230,led2, 1),
+            borrarOmostrar(FocoCocina, 400+130, 150,led3, 1)
         })
 
 #posicion de los botones
