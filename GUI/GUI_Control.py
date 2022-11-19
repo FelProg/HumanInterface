@@ -5,8 +5,10 @@ from tkinter.font import BOLD,Font
 from PIL import Image,ImageTk
 import serial
 
+
 #instancia del puerto serial
-arduino = serial.Serial("COM4",9600) #9600 caracteres por segundo
+#arduino = serial.Serial("COM4",9600) #9600 caracteres por segundo
+arduino = serial.Serial("/dev/cu.usbmodem14101")
 
 #instancia de Tk
 ventana = Tk()
