@@ -1,13 +1,9 @@
-#import
-#from cProfile import label
-#from faulthandler import disable
+
 from tkinter import *
 from tkinter import messagebox, Button
 from tkinter.font import BOLD,Font
 from PIL import Image,ImageTk
 import serial
-
-#from HumanInterface.GUI.GUI_Control import Labels_Frame
 
 error = 0
 ventana_Principal = Tk()
@@ -18,8 +14,7 @@ except:
 
 #declarar funcion
 def ConmutarLED(boton, numeroLED, letra) : 
-    # print("Presionaron un boton")
-    # messagebox.showinfo("Informacion","Boton encendido")
+   
     if boton["text"] == "Apagar LED "+ numeroLED :
         boton["text"] = "Encender LED "+ numeroLED
         arduino.write(bytes(letra.upper(), 'utf-8'))
@@ -65,10 +60,10 @@ boton_Led3.place(x=16, y=124)
 boton_Led4 = Button(text="apagar LED 4",command=lambda: ConmutarLED(boton_Led4,"4","d"))
 boton_Led4.place(x=16, y=156)
 
-boton_ApagarTodos = Button(text="Apagar Todos")
+boton_ApagarTodos = Button(text="Apagar Todos" ,command=ApagarTodos)
 boton_ApagarTodos.place(x=16, y=188)
 
-boton_EncenderTodos = Button(text="Encender Todos")
+boton_EncenderTodos = Button(text="Encender Todos", command=EncenderTodos)
 boton_EncenderTodos.place(x=16, y=220)
 
 if error == 1:
