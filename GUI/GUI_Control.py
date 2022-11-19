@@ -8,7 +8,12 @@ import serial
 
 #instancia del puerto serial
 #arduino = serial.Serial("COM4",9600) #9600 caracteres por segundo
-arduino = serial.Serial("/dev/cu.usbmodem14101")
+error = 0;
+
+try:
+    arduino = serial.Serial("/dev/cu.usbmodem14101")
+except:
+    error=1
 
 #instancia de Tk
 ventana = Tk()
